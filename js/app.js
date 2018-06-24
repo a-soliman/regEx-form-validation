@@ -32,7 +32,7 @@ const validateZip = (inputField, value) => {
 };
 
 const validateEmail = (inputField, value) => {
-    const re= //;
+    const re= /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
     testValidation(inputField, value, re);
 };
