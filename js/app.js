@@ -1,11 +1,27 @@
-const nameInput     = document.getElementById('name');
-const zipInput      = document.getElementById('zip');
-const emailInput    = document.getElementById('email');
-const phoneInput    = document.getElementById('phone');
+const nameInput = {
+    field: document.getElementById('name'),
+    valid: null
+};
+
+const zipInput = {
+    field: document.getElementById('zip'),
+    valid: null
+};
+
+const emailInput = {
+    field: document.getElementById('email'),
+    valid: null
+};
+const phoneInput = {
+    field: document.getElementById('phone'),
+    valid: null
+};
+const submitBtn = document.getElementById('submitBtn');
 
 const inputs = [nameInput, zipInput, emailInput, phoneInput];
+
 inputs.forEach( (input) => {
-    input.addEventListener('blur', validateInput);
+    input.field.addEventListener('blur', validateInput);
 });
 
 function validateInput(e) {
@@ -22,35 +38,79 @@ function validateInput(e) {
 const validateName = (inputField, value) => {
     const re = /^[a-zA-Z]{2,10}$/;
 
-    testValidation(inputField, value, re);
+    if( testValidation(value, re) == true ) {
+        nameInput.valid = true;
+        removeInvalidClass(inputField);
+    } else {
+        nameInput.valid = false;
+        addInvalidClass(inputField);
+    }
+    checkAllInputs();
 };
 
 const validateZip = (inputField, value) => {
     const re = /^[0-9]{5}(-[0-9]{4})?$/;
 
-    testValidation(inputField, value, re);
+    if( testValidation(value, re) == true ) {
+        zipInput.valid = true;
+        removeInvalidClass(inputField);
+    } else {
+        zipInput.valid = false;
+        addInvalidClass(inputField);
+    }
+    checkAllInputs();
 };
 
 const validateEmail = (inputField, value) => {
     const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
-    testValidation(inputField, value, re);
+    if( testValidation(value, re) == true ) {
+        emailInput.valid = true;
+        removeInvalidClass(inputField);
+    } else {
+        emailInput.valid = false;
+        addInvalidClass(inputField);
+    }
+    checkAllInputs();
 };
 
 const validatePhone = (inputField, value) => {
     const re = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
 
-    testValidation(inputField, value, re);
-};
-
-const testValidation = (inputField, value, re) => {
-    if ( !re.test(value) ) {
-        inputField.classList.add('is-invalid');
+    if( testValidation(value, re) == true ) {
+        phoneInput.valid = true;
+        removeInvalidClass(inputField);
     } else {
-        inputField.classList.remove('is-invalid');
+        phoneInput.valid = false;
+        addInvalidClass(inputField);
     }
-
-    return;
+    checkAllInputs();
 };
 
+const testValidation = (value, re) => {
+    return !re.test(value) ? false: true;
+};
+
+const addInvalidClass = ( inputField ) => {
+    inputField.classList.add('is-invalid');
+};
+
+const removeInvalidClass = ( inputField ) => {
+    inputField.classList.remove('is-invalid');
+};
+
+const checkAllInputs = () => {
+    let fail = false;
+
+    inputs.forEach( (input) => {
+        if (input.valid != true) {
+            fail = true;
+        }
+    });
+    if ( !fail ) {
+        submitBtn.removeAttribute('disabled');
+    } else {
+        submitBtn.setAttribute('disabled', true);
+    }
+};
 
