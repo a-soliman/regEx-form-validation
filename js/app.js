@@ -22,12 +22,7 @@ function validateInput(e) {
 const validateName = (inputField, value) => {
     const re = /^[a-zA-Z]{2,10}$/;
 
-    if ( !re.test(value) ) {
-        inputField.classList.add('is-invalid');
-    } else {
-        inputField.classList.remove('is-invalid');
-    }
-
+    testValidation(inputField, value, re);
 };
 
 const validateZip = (value) => {
@@ -40,4 +35,14 @@ const validateEmail = (value) => {
 
 const validatePhone = (value) => {
 
+};
+
+const testValidation = (inputField, value, re) => {
+    if ( !re.test(value) ) {
+        inputField.classList.add('is-invalid');
+    } else {
+        inputField.classList.remove('is-invalid');
+    }
+    
+    return;
 };
