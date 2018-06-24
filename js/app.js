@@ -26,19 +26,19 @@ const validateName = (inputField, value) => {
 };
 
 const validateZip = (inputField, value) => {
-    const re= /^[0-9]{5}(-[0-9]{4})?$/;
+    const re = /^[0-9]{5}(-[0-9]{4})?$/;
 
     testValidation(inputField, value, re);
 };
 
 const validateEmail = (inputField, value) => {
-    const re= /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    const re = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 
     testValidation(inputField, value, re);
 };
 
 const validatePhone = (inputField, value) => {
-    const re= //;
+    const re = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
 
     testValidation(inputField, value, re);
 };
