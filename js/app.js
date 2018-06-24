@@ -14,9 +14,9 @@ function validateInput(e) {
     const id = inputField.id;
     
     if ( id == 'name' ) { validateName(inputField, value); }
-    else if ( id == 'zip' ) { validateZip(value); }
-    else if ( id == 'email' ) { validateEmail(value); }
-    else if ( id == 'phone' ) { validatePhone(value); }
+    else if ( id == 'zip' ) { validateZip(inputField, value); }
+    else if ( id == 'email' ) { validateEmail(inputField, value); }
+    else if ( id == 'phone' ) { validatePhone(inputField, value); }
 }
 
 const validateName = (inputField, value) => {
@@ -25,16 +25,22 @@ const validateName = (inputField, value) => {
     testValidation(inputField, value, re);
 };
 
-const validateZip = (value) => {
+const validateZip = (inputField, value) => {
+    const re= /^[0-9]{5}(-[0-9]{4})?$/;
 
+    testValidation(inputField, value, re);
 };
 
-const validateEmail = (value) => {
+const validateEmail = (inputField, value) => {
+    const re= //;
 
+    testValidation(inputField, value, re);
 };
 
-const validatePhone = (value) => {
+const validatePhone = (inputField, value) => {
+    const re= //;
 
+    testValidation(inputField, value, re);
 };
 
 const testValidation = (inputField, value, re) => {
@@ -43,6 +49,6 @@ const testValidation = (inputField, value, re) => {
     } else {
         inputField.classList.remove('is-invalid');
     }
-    
+
     return;
 };
