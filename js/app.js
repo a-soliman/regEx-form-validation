@@ -17,12 +17,15 @@ const phoneInput = {
     valid: null
 };
 const submitBtn = document.getElementById('submitBtn');
+const form =document.querySelector('form');
 
 const inputs = [nameInput, zipInput, emailInput, phoneInput];
 
 inputs.forEach( (input) => {
     input.field.addEventListener('blur', validateInput);
 });
+
+form.addEventListener('submit', submitForm);
 
 function validateInput(e) {
     const inputField = e.target;
@@ -114,3 +117,14 @@ const checkAllInputs = () => {
     }
 };
 
+function submitForm (e) {
+    e.preventDefault();
+    alert('Congratulations! all fields are valid.');
+
+    inputs.forEach((input) => {
+        input.field.value = '';
+    });
+    
+    submitBtn.setAttribute('disabled', true);
+    return;
+}
